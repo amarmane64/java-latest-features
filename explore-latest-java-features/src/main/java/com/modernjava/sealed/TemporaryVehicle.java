@@ -1,8 +1,8 @@
 package com.modernjava.sealed;
 
-public final class Truck extends Vehicle{
+public non-sealed class TemporaryVehicle extends Vehicle {
     @Override
     public String drive() {
-        return "Truck";
+        return "Temp";
     }
 }
