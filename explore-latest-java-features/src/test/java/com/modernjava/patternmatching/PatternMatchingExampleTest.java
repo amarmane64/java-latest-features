@@ -22,6 +22,20 @@ class PatternMatchingExampleTest {
         assertEquals(expectedResult, output);
     }
 
+    @ParameterizedTest
+    @MethodSource("input")
+    void patternInstanceOf(Object value, String expectedResult) {
+
+        var output =  patternMatchingExample.patternInstanceOf(value);
+        assertEquals(expectedResult, output);
+    }
+    @ParameterizedTest
+    @MethodSource("input")
+    void patternSwitch(Object value, String expectedResult) {
+
+        var output =  patternMatchingExample.patternUsingSwitch(value);
+        assertEquals(expectedResult, output);
+    }
     private static Stream<Arguments> input() {
         return Stream.of(
                 Arguments.of("Dilip", "String of length:5"),

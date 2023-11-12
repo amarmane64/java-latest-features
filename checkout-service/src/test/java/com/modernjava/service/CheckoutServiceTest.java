@@ -18,11 +18,18 @@ public class CheckoutServiceTest {
     PaymentService paymentService = new PaymentService();
     CheckoutService checkoutService = new CheckoutService(paymentService);
 
-    static OrderDetails orderDetails(CardType cardType) {
 
+    @EnumSource(CardType.class)
+    @ParameterizedTest(name = "Checkout for card Type: {0}")
+    void checkout(CardType cardType) {
+        var orderDetails = orderDetails(cardType);
+        var response = checkoutService.checkoutOrder(orderDetails);
+        assertEquals(CheckOutStatus.SUCCESS, response);
+    }
+
+    static OrderDetails orderDetails(CardType cardType) {
         var card = new Card("ABC", "7676709809809809",
                 "4567", "09/99", cardType);
         return new OrderDetails("1234", card, 99.0);
-
     }
 }
